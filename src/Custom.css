@@ -34,14 +34,13 @@ img {
   padding-bottom: 0;
   height: 4.5rem;
   align-items: center;
-  justify-content: flex-end;
 }
 
 .header ul {
   display: flex;
 }
 
-.header ul li {
+.header div {
   margin: 1rem;
 }
 
@@ -75,4 +74,8 @@ img {
 
 .add-book {
   height: 20rem;
+}
+div .viewAllLink {
+  display: flex;
+  margin-left: auto;
 }

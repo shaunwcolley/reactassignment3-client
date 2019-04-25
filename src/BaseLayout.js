@@ -5,11 +5,9 @@ export class Header extends Component {
   render(){
     return (
       <div className="header">
-        <ul>
-          <li><NavLink to="/" className="navlink">Home</NavLink></li>
-          <li><NavLink to="/view-all-books" className="navlink">View Books</NavLink></li>
-          <li><NavLink to="/add-book" className="navlink">Add Book</NavLink></li>
-        </ul>
+        <div><NavLink to="/" className="navlink">Home</NavLink></div>
+        <div className="viewAllLink"><NavLink to="/view-all-books" className="navlink">View Books</NavLink></div>
+        <div><NavLink to="/add-book" className="navlink">Add Book</NavLink></div>
       </div>
     )
   }
