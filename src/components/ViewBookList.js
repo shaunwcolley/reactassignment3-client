@@ -27,7 +27,7 @@ export class ViewBookList extends Component {
         return (
                <li key={book.id}>
                 <h4>{book.title}</h4>
-                <button value={book.id} onClick={this.handleDeleteClick}>Remove</button>
+                <button onClick={()=>this.handleDeleteClick(book.id)}>Remove</button>
                 <h5>{book.genre}</h5>
                 <h5>{book.publisher}</h5>
                 <h5>{book.year}</h5>
@@ -41,8 +41,8 @@ export class ViewBookList extends Component {
     })
   }
 
-  handleDeleteClick = (e) => {
-    let deleteID = parseInt(e.target.value)
+  handleDeleteClick = (bookID) => {
+    let deleteID = parseInt(bookID)
     fetch('http://localhost:8080/api/delete-book', {
       method: 'POST',
       headers: {
