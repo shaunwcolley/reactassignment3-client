@@ -1,10 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './Custom.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {BaseLayout} from './BaseLayout'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {ViewBookList} from './components/ViewBookList'
+import {AddBook} from './components/AddBook'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+  <BaseLayout>
+    <Switch>
+      <Route path="/" exact component={App} />
+      <Route path="/add-book" component={AddBook} />
+      <Route path="/view-all-books" component={ViewBookList} />
+    </Switch>
+  </BaseLayout>
+  </BrowserRouter>
+
+  , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
