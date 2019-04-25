@@ -50,12 +50,6 @@ export class ViewBookList extends Component {
       },
       body: JSON.stringify({deleteID: deleteID})
     }).then(()=> {
-      // let newBooks = this.state.books.filter((book) => {
-      //   return (deleteID !== book.id)
-      // })
-      // this.setState({
-      //   books: newBooks
-      // })
       this.booksFetch()
     })
   }
