@@ -38,13 +38,6 @@ export class AddBook extends Component {
     }).then(() => {
       this.props.history.push('/view-all-books')
     })
-    this.setState({
-      title: '',
-      genre: '',
-      publisher: '',
-      year: '',
-      imageURL: ''
-    })
   }
 
   render() {
