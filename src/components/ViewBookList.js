@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 export class ViewBookList extends Component {
   constructor() {
@@ -24,10 +25,12 @@ export class ViewBookList extends Component {
     }).then( () => {
       let books = this.state.books
       let bookStateItems = books.map((book) => {
+        let bookLink = '/api/update/book-id/' + book.id
         return (
                <li key={book.id}>
                 <h4>{book.title}</h4>
                 <button onClick={()=>this.handleDeleteClick(book.id)}>Remove</button>
+                <Link to={bookLink}>Update</Link>
                 <h5>{book.genre}</h5>
                 <h5>{book.publisher}</h5>
                 <h5>{book.year}</h5>
