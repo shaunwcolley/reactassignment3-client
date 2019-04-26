@@ -16,7 +16,7 @@ export class Footer extends Component {
   render(){
     return (
       <div className="footer">
-        Copyright 2019
+        <h5>Images posted are not property of this site, they belong to the linked source and were posted by users.</h5><h5>Copyright 2019</h5>
       </div>
     )
   }
