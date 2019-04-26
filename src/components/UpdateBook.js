@@ -66,6 +66,8 @@ export class UpdateBook extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(book)
+    }).then(()=>{
+      this.booksFetch()
     })
   }
 

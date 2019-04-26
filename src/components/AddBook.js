@@ -35,6 +35,8 @@ export class AddBook extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(book)
+    }).then(() => {
+      this.props.history.push('/view-all-books')
     })
     this.setState({
       title: '',
