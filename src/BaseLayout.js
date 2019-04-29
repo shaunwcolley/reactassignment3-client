@@ -6,8 +6,10 @@ export class Header extends Component {
     return (
       <div className="header">
         <div><NavLink to="/" className="navlink">Home</NavLink></div>
-        <div className="viewAllLink"><NavLink to="/view-all-books" className="navlink">View Books</NavLink></div>
-        <div><NavLink to="/add-book" className="navlink">Add Book</NavLink></div>
+        <div className="viewAllLink"><NavLink to="/view-all-books" className="navlink">View All Books</NavLink></div>
+        {this.props.isAuthenticated ? <div><NavLink to="/add-book" className="navlink">Add Book</NavLink></div> : null }
+        {!this.props.isAuthenticated ? <div><NavLink to="/register" className="navlink">Register</NavLink></div> : null}
+        {!this.props.isAuthenticated ? <div><NavLink to="/login" className="navlink">Login</NavLink></div> : null}
       </div>
     )
   }
@@ -26,7 +28,7 @@ export class BaseLayout extends Component {
   render(){
     return (
       <div className="body">
-        <Header />
+        <Header isAuthenticated = {false} />
           {this.props.children}
         <Footer />
       </div>
