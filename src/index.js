@@ -20,16 +20,16 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-    <BaseLayout>
-      <Switch>
-        <Route path="/" exact component={App} />
-        <Route path="/add-book" component={AddBook} />
-        <Route path="/view-all-books" component={ViewBookList} />
-        <Route path="/api/update/book-id/:bookId" component={UpdateBook} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </Switch>
-    </BaseLayout>
+      <BaseLayout>
+        <Switch>
+          <Route path="/" exact component={App} />
+          <Route path="/add-book" component={AddBook} />
+          <Route path="/view-all-books" component={ViewBookList} />
+          <Route path="/api/update/book-id/:bookId" component={UpdateBook} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Switch>
+      </BaseLayout>
     </BrowserRouter>
   </Provider>
 

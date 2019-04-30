@@ -30,7 +30,7 @@ class Login extends Component {
       if(json.success) {
         this.props.onSignIn()
         this.props.history.push('/view-all-books')
-      } else if (!json.succes) {
+      } else if (!json.success) {
         this.setState({
           ...this.state,
           message: json.message

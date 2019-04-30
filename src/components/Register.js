@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 
 class Register extends Component {
   constructor() {
     super()
     this.state = {
       userName: '',
-      pass: ''
+      pass: '',
+      message: ''
     }
   }
 
@@ -24,9 +24,15 @@ class Register extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(credentials)
-    }).then((response) => {
-      console.log(response)
-      this.props.history.push('/login')
+    }).then((response) => response.json()).then(json => {
+      if(json.success){
+        this.props.history.push('/login')
+      } else if(!json.success) {
+        this.setState({
+          ...this.state,
+          message: json.message
+        })
+      }
     })
   }
   render() {
@@ -36,6 +42,7 @@ class Register extends Component {
         <input type='text' placeholder='User Name' onChange={this.handleTextBoxChange} name="userName"/>
         <input type='password' placeholder='password' onChange={this.handleTextBoxChange} name="pass"/>
         <button onClick={() => this.handleSubmitClick()}>Submit</button>
+        {this.state.message}
       </div>
     )
   }

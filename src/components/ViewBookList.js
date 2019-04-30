@@ -35,7 +35,7 @@ class ViewBookList extends Component {
                 <h5>{book.genre}</h5>
                 <h5>{book.publisher}</h5>
                 <h5>{book.year}</h5>
-                <button onClick={() => {this.props.onIncrementBookCount()}}>Add to Cart</button>
+                {this.props.isAuth ? <button onClick={() => {this.props.onIncrementBookCount()}}>Add to Cart</button> : null}
                 <img src={book.imageURL} alt=""/>
                </li>
              )
@@ -68,7 +68,7 @@ class ViewBookList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    bookCount: state.bookCount
+    isAuth: state.isAuth
   }
 }
 

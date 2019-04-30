@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 export class Header extends Component {
+  handleSignOutClick = () => {
+    this.props.history.push('/login')
+    this.props.onSignOut()
+  }
   render(){
     return (
       <div className="header">
@@ -12,7 +17,7 @@ export class Header extends Component {
         {!this.props.isAuthenticated ? <div><NavLink to="/register" className="navlink">Register</NavLink></div> : null}
         {!this.props.isAuthenticated ? <div><NavLink to="/login" className="navlink">Login</NavLink></div> : null}
         {this.props.isAuthenticated ? <div className="navlink">Books: {this.props.bookCount} </div> : null }
-        {this.props.isAuthenticated ? <button className="navlink" onClick={() => this.props.onSignOut()}>Sign Out </button> : null }
+        {this.props.isAuthenticated ? <button className="navlink" onClick={() => this.handleSignOutClick()}>Sign Out </button> : null }
       </div>
     )
   }
@@ -31,7 +36,7 @@ class BaseLayout extends Component {
   render(){
     return (
       <div className="body">
-        <Header isAuthenticated = {this.props.isAuth} bookCount={this.props.bookCount} onSignOut= {() => this.props.onSignOut()}/>
+        <Header isAuthenticated={this.props.isAuth} bookCount={this.props.bookCount} onSignOut= {() => this.props.onSignOut()} history = {this.props.history}/>
           {this.props.children}
         <Footer />
       </div>
@@ -52,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(BaseLayout)
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(BaseLayout))

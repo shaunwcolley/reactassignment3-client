@@ -12,7 +12,8 @@ const reducer = (state = initialState, action) => {
   } else if (action.type === 'SIGN_OUT') {
     return {
       ...state,
-      isAuth: false
+      isAuth: false,
+      bookCount: 0
     }
   } else if (action.type === 'SIGN_IN') {
     return {
