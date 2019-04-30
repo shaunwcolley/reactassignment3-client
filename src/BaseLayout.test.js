@@ -16,7 +16,7 @@ describe('<Header />', () => {
 
   it('should display three <NavLink /> when authenticated', () => {
     wrapper.setProps({isAuthenticated:true})
-    expect(wrapper.find(NavLink)).toHaveLength(3)
+    expect(wrapper.find(NavLink)).toHaveLength(5)
   })
 
   it('should display four <NavLink /> when not authenticated', () => {

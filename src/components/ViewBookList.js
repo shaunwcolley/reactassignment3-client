@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export class ViewBookList extends Component {
+class ViewBookList extends Component {
   constructor() {
     super()
 
@@ -34,6 +35,7 @@ export class ViewBookList extends Component {
                 <h5>{book.genre}</h5>
                 <h5>{book.publisher}</h5>
                 <h5>{book.year}</h5>
+                <button onClick={() => {this.props.onIncrementBookCount()}}>Add to Cart</button>
                 <img src={book.imageURL} alt=""/>
                </li>
              )
@@ -63,3 +65,17 @@ export class ViewBookList extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    bookCount: state.bookCount
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementBookCount: () => dispatch({type: 'INC_BOOK_COUNT'})
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ViewBookList)
