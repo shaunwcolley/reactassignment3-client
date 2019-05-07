@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 class ViewBookList extends Component {
   constructor() {
@@ -30,8 +31,8 @@ class ViewBookList extends Component {
         return (
                <li key={book.id}>
                 <h4>{book.title}</h4>
-                <button onClick={()=>this.handleDeleteClick(book.id)}>Remove</button>
-                <Link to={bookLink}>Update</Link>
+                {this.props.isAuth ? <button onClick={()=>this.handleDeleteClick(book.id)}>Remove</button> : null}
+                {this.props.isAuth ? <Link to={bookLink}>Update</Link> : null}
                 <h5>{book.genre}</h5>
                 <h5>{book.publisher}</h5>
                 <h5>{book.year}</h5>
@@ -48,12 +49,8 @@ class ViewBookList extends Component {
 
   handleDeleteClick = (bookID) => {
     let deleteID = parseInt(bookID)
-    fetch('http://localhost:8080/api/delete-book', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({deleteID: deleteID})
+    axios.post('http://localhost:8080/api/delete-book', {
+      deleteID: deleteID
     }).then(()=> {
       this.booksFetch()
     })

@@ -1,6 +1,7 @@
 const initialState = {
   bookCount: 0,
-  isAuth: false
+  isAuth: false,
+  userId: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +14,14 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       isAuth: false,
-      bookCount: 0
+      bookCount: 0,
+      userId: null
     }
   } else if (action.type === 'SIGN_IN') {
     return {
       ...state,
-      isAuth: true
+      isAuth: action.token != null ? true : false,
+      userId: action.userId
     }
   }
   return state

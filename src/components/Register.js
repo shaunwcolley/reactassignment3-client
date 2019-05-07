@@ -6,6 +6,7 @@ class Register extends Component {
     this.state = {
       userName: '',
       pass: '',
+      email: '',
       message: ''
     }
   }
@@ -40,6 +41,7 @@ class Register extends Component {
       <div className="component">
         <h4>Register</h4>
         <input type='text' placeholder='User Name' onChange={this.handleTextBoxChange} name="userName"/>
+        <input type='text' placeholder='Email' onChange={this.handleTextBoxChange} name="email"/>
         <input type='password' placeholder='password' onChange={this.handleTextBoxChange} name="pass"/>
         <button onClick={() => this.handleSubmitClick()}>Submit</button>
         {this.state.message}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 
 export class UpdateBook extends Component {
 
@@ -59,13 +60,13 @@ export class UpdateBook extends Component {
 
   handleUpdateBookClick = () => {
     let url = "http://localhost:8080" + this.props.match.url
-    let book = this.state
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(book)
+    axios.post(url, {
+      book: this.state.book,
+      title: this.state.title,
+      genre: this.state.genre,
+      publisher: this.state.publisher,
+      year: this.state.year,
+      imageURL: this.state.imageURL
     }).then(()=>{
       this.booksFetch()
     })

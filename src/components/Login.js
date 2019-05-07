@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 class Login extends Component {
   constructor() {
@@ -18,22 +19,22 @@ class Login extends Component {
   }
 
   handleLoginClick = () => {
-    let credentials = this.state
-    fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    }).then((response) => response.json())
-    .then(json => {
-      if(json.success) {
-        this.props.onSignIn()
+    let userName = this.state.userName
+    let pass = this.state.pass
+    axios.post('http://localhost:8080/login', {
+      userName: userName,
+      pass: pass
+    }).then((response) =>  {
+      if(response.data.success) {
+        let token = response.data.token
+        let userId = response.data.userId
+        localStorage.setItem('jsonwebtoken', token)
+        this.props.onSignIn(token,userId)
         this.props.history.push('/view-all-books')
-      } else if (!json.success) {
+      } else if (!response.data.success) {
         this.setState({
           ...this.state,
-          message: json.message
+          message: response.data.message
         })
       }
     })
@@ -54,7 +55,7 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSignIn: () => dispatch({type: 'SIGN_IN'})
+    onSignIn: (token,userId) => dispatch({type: 'SIGN_IN', token: token, userId: userId})
   }
 }
 
