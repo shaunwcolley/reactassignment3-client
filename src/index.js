@@ -35,7 +35,7 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/my-books" component={requireAuth(MyBooks)} />
-          <Route path="/profile" component={requireAuth(Profile)} />
+          <Route path="/profile/user-id/:userId" component={requireAuth(Profile)} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>

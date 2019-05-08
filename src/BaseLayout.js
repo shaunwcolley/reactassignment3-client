@@ -18,7 +18,7 @@ export class Header extends Component {
         {!this.props.isAuthenticated ? <div><NavLink to="/register" className="navlink">Register</NavLink></div> : null}
         {!this.props.isAuthenticated ? <div><NavLink to="/login" className="navlink">Login</NavLink></div> : null}
         {this.props.isAuthenticated ? <div><NavLink to="/my-books" className="navlink">My Books</NavLink></div> : null }
-        {this.props.isAuthenticated ? <div><NavLink to={`/profile/${this.props.userId}`} className="navlink">Profile</NavLink></div> : null }
+        {this.props.isAuthenticated ? <div><NavLink to={`/profile/user-id/${this.props.userId}`} className="navlink">Profile</NavLink></div> : null }
         {this.props.isAuthenticated ? <div className="navlink">Books: {this.props.bookCount} </div> : null }
         {this.props.isAuthenticated ? <button className="navlink" onClick={() => this.handleSignOutClick()}>Sign Out </button> : null }
       </div>
